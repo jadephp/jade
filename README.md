@@ -30,7 +30,7 @@ $app->get('/ping', function(ServerRequestInterface $request){
 // 3. 添加 middleware
 $app->pipe(function(ServerRequestInterface $request, RequestHandlerInterface $handler){
    $response = $handler->handle($request);
-   return $response->withHeader('X-Shein-Version', '0.0.1');
+   return $response->withHeader('X-Jade-Version', '0.0.1');
 });
 
 // 4. 提供服务

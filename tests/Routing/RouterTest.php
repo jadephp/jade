@@ -1,12 +1,12 @@
 <?php
 
-namespace Shein\Tests\Routing;
+namespace Jade\Tests\Routing;
 
 use FastRoute\Dispatcher;
 use PHPUnit\Framework\TestCase;
-use Shein\Routing\Collection;
-use Shein\Routing\Route;
-use Shein\Routing\Router;
+use Jade\Routing\Collection;
+use Jade\Routing\Route;
+use Jade\Routing\Router;
 use Zend\Diactoros\ServerRequest;
 
 class RouterTest extends TestCase

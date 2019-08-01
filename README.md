@@ -1,9 +1,16 @@
-<p align="center" style="text-align:center"><a href="https://www.shein.com" target="_blank">SHEIN FRAMEWORK</a></p>
 
-## 关于框架
+# Jade Framework
 
- Shein Framework 以下简称“SF”, SF 是一个拥有简明语法与设计的微框架；灵感来自于 [Slim](https://github.com/slimphp/Slim)
+Jade 是一个拥有简明语法，采用微内核设计的 PHP web框架。
  
+## Installation
+
+推荐使用 Composer 安装：
+
+```bash
+$ composer require jadephp/jade
+```
+
 ## Quick Start
 
 ```php
@@ -13,7 +20,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response;
 
 // 1. 创建应用
-$app = new Shein\App();
+$app = new Jade\App();
 
 // 2. 添加路由
 $app->get('/ping', function(ServerRequestInterface $request){
@@ -44,11 +51,7 @@ $app->serve();
 $ phpunit
 ```
 
-## Contributors
-
-框架由公共平台架构部开发二组维护；欢迎贡献代码；
-
 ## License
 
-SF 框架面向公司内部开源，你可以免费使用创建你的应用。
+The MIT license. See [MIT](https://opensource.org/licenses/MIT)
  

@@ -1,13 +1,13 @@
 <?php
 
-namespace Shein\Tests\Middleware;
+namespace Jade\Tests\Middleware;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Shein\Middleware\MiddlewareFactory;
+use Jade\Middleware\MiddlewareFactory;
 
 class TestMiddleware implements MiddlewareInterface
 {

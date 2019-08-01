@@ -1,9 +1,9 @@
 <?php
 
-namespace Shein\Tests\Routing;
+namespace Jade\Tests\Routing;
 
 use PHPUnit\Framework\TestCase;
-use Shein\Routing\Route;
+use Jade\Routing\Route;
 
 class RouteTest extends TestCase
 {

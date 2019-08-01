@@ -1,14 +1,14 @@
 <?php
 
-namespace Shein\Tests\Middleware;
+namespace Jade\Tests\Middleware;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Shein\Middleware\RouteMiddleware;
-use Shein\Routing\Route;
+use Jade\Middleware\RouteMiddleware;
+use Jade\Routing\Route;
 use Zend\Diactoros\Response\TextResponse;
 use Zend\Diactoros\ServerRequest;
 use Zend\Stratigility\Exception\EmptyPipelineException;

@@ -1,14 +1,14 @@
 <?php
 
-namespace Shein\Tests;
+namespace Jade\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use Shein\App;
-use Shein\Middleware\MiddlewareFactory;
-use Shein\Routing\Collection;
-use Shein\Routing\Route;
-use Shein\ServiceProviderInterface;
+use Jade\App;
+use Jade\Middleware\MiddlewareFactory;
+use Jade\Routing\Collection;
+use Jade\Routing\Route;
+use Jade\ServiceProviderInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Zend\Stratigility\MiddlewarePipeInterface;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Shein\Tests;
+namespace Jade\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Shein\Container;
-use Shein\Exception\ContainerValueNotFoundException;
+use Jade\Container;
+use Jade\Exception\ContainerValueNotFoundException;
 
 class ContainerTest extends TestCase
 {

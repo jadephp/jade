@@ -1,10 +1,10 @@
 <?php
 
-namespace Shein\Tests\Routing;
+namespace Jade\Tests\Routing;
 
 use PHPUnit\Framework\TestCase;
-use Shein\Routing\Collection;
-use Shein\Routing\Route;
+use Jade\Routing\Collection;
+use Jade\Routing\Route;
 
 class CollectionTest extends TestCase
 {

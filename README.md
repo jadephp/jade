@@ -1,11 +1,17 @@
-
 # Jade Framework
 
-Jade 是一个拥有简明语法，采用微内核设计的 PHP web框架。
+
+[![Build Status](https://img.shields.io/travis/jadephp/jade/master.svg?style=flat-square)](https://travis-ci.org/jadephp/jade)
+[![Coverage Status](https://img.shields.io/codecov/c/github/jadephp/jade.svg?style=flat-square)](https://codecov.io/github/jadephp/jade)
+[![Total Downloads](https://img.shields.io/packagist/dt/jadephp/jade.svg?style=flat-square)](https://packagist.org/packages/jadephp/jade)
+[![Latest Stable Version](https://img.shields.io/packagist/v/jadephp/jade.svg?style=flat-square&label=stable)](https://packagist.org/packages/jadephp/jade)
+[![Scrutinizer](https://img.shields.io/scrutinizer/g/jadephp/jade.svg?style=flat-square)](https://scrutinizer-ci.com/g/jadephp/jade/?branch=master)
+
+Jade is a flexible PHP micro framework to develop web applications and APIs
  
 ## Installation
 
-推荐使用 Composer 安装：
+The recommended way to install Silex is through Composer:
 
 ```bash
 $ composer require jadephp/jade
@@ -19,33 +25,40 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response;
 
-// 1. 创建应用
+// 1. Create App
 $app = new Jade\App();
 
-// 2. 添加路由
+// 2. Add routes
 $app->get('/ping', function(ServerRequestInterface $request){
     return new Response\TextResponse('pong');
 });
 
-// 3. 添加 middleware
+// 3. Add middlewares
 $app->pipe(function(ServerRequestInterface $request, RequestHandlerInterface $handler){
    $response = $handler->handle($request);
    return $response->withHeader('X-Jade-Version', '0.0.1');
 });
 
-// 4. 提供服务
+// 4. Listen and serve.
 $app->serve();
 ```
 
-以上代码即可实现一个简单的心跳应用；使用 `php -S 127.0.0.1:8000` 快速开启服务；使用浏览器打开 `http://127.0.0.1:8000` 即可访问
+The above code can create a simple heartbeat application.
+
+Test this with the built-in PHP server:
+
+```bash
+php -S 127.0.0.1:8000
+```
+Use the browser open `http://127.0.0.1:8000/ping`
 
 ## Documentation
 
-更多关于本框架的信息，请参与 [文档](./docs)
+Read the [documentation](./docs/index.md) for more information 
 
 ## Tests
 
-你需要安装 `PHPUnit` 来执行单元测试；
+To run the test suite, you need PHPUnit:
 
 ```bash
 $ phpunit
@@ -53,5 +66,5 @@ $ phpunit
 
 ## License
 
-The MIT license. See [MIT](https://opensource.org/licenses/MIT)
+Jade is licensed under The MIT license. See [MIT](https://opensource.org/licenses/MIT)
  

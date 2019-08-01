@@ -2,9 +2,9 @@
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Shein\App;
-use Shein\Middleware\ErrorHandlerMiddleware;
-use Shein\Console\CommandDiscovererProvider;
+use Jade\App;
+use Jade\Middleware\ErrorHandlerMiddleware;
+use Jade\Console\CommandDiscovererProvider;
 use Zend\Diactoros\Response;
 
 $app = new App();
@@ -13,7 +13,7 @@ $app = new App();
 $app->pipe(new ErrorHandlerMiddleware());
 $app->pipe(function(ServerRequestInterface $request, RequestHandlerInterface $handler){
     $response = $handler->handle($request);
-    return $response->withHeader('X-Shein-Version', '0.0.1');
+    return $response->withHeader('X-Jade-Version', '0.0.1');
 });
 
 // 路由

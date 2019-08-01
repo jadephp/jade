@@ -58,18 +58,18 @@ class RouterTest extends TestCase
     public function testDispatchWithName()
     {
         $router = $this->routerFactory();
-        $request = new ServerRequest([], [], '/hello/shein', 'GET');
+        $request = new ServerRequest([], [], '/hello/Jade', 'GET');
 
         $routerInfo = $router->dispatch($request);
         $this->assertEquals(1, $routerInfo[0]);
         $this->assertArrayHasKey('username', $routerInfo[2]);
-        $this->assertEquals('shein', $routerInfo[2]['username']);
+        $this->assertEquals('Jade', $routerInfo[2]['username']);
     }
 
     public function testDispatchWithNonMatchedMethod()
     {
         $router = $this->routerFactory();
-        $request = new ServerRequest([], [], '/greet/shein', 'GET');
+        $request = new ServerRequest([], [], '/greet/Jade', 'GET');
 
         $routerInfo = $router->dispatch($request);
         $this->assertEquals(2, $routerInfo[0]);

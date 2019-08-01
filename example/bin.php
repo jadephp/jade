@@ -1,7 +1,7 @@
 <?php
 
 use Symfony\Component\Console\Input\ArgvInput;
-use Shein\Console\Application;
+use Jade\Console\Application;
 
 include __DIR__ . '/../vendor/autoload.php';
 include __DIR__ . '/Command/HelloCommand.php';

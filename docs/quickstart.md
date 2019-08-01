@@ -5,7 +5,7 @@ SF 是个微内核框架，并不限制你的应用结构，你甚至可以在�
 
 ```php
 use Psr\Http\Message\ServerRequestInterface;
-use Shein\App;
+use Jade\App;
 use Zend\Diactoros\Response;
 
 $app = new App();

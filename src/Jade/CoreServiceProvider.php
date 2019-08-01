@@ -12,12 +12,13 @@
 namespace Jade;
 
 use Jade\Middleware\MiddlewareFactory;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Zend\Stratigility\MiddlewarePipe;
 
 class CoreServiceProvider implements ServiceProviderInterface
 {
-    public function register(Container $container)
+    public function register(ContainerInterface $container)
     {
         // 事件管理
         $container['event_dispatcher'] = function(){

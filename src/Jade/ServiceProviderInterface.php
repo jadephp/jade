@@ -11,7 +11,9 @@
 
 namespace Jade;
 
+use Psr\Container\ContainerInterface;
+
 interface ServiceProviderInterface
 {
-    public function register(Container $container);
+    public function register(ContainerInterface $container);
 }

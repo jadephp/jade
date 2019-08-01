@@ -13,7 +13,6 @@ namespace Jade;
 
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -76,7 +75,7 @@ class App implements RequestHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function handle(Request $request): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         // 启动应用
         $this->boot();

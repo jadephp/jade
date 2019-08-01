@@ -15,13 +15,14 @@ use Jade\Container;
 use Jade\EventProviderInterface;
 use Jade\Routing\Router;
 use Jade\ServiceProviderInterface;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 use Zend\HttpHandlerRunner\Emitter\SapiStreamEmitter;
 
 class HttpKernelProvider implements ServiceProviderInterface, EventProviderInterface
 {
-    public function register(Container $container)
+    public function register(ContainerInterface $container)
     {
         // 路由控制
         $container['router'] = function($c){

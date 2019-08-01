@@ -32,7 +32,7 @@ class HttpKernelProvider implements ServiceProviderInterface, EventProviderInter
             return new RouterListener($c['router']);
         };
         // http kernel
-        $container['controller_resolver'] = function($c){
+        $container['controller_resolver'] = function(){
             return new ControllerResolver();
         };
         $container['argument_resolver'] = function(){

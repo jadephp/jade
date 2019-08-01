@@ -1,6 +1,9 @@
 {
     "name": "jadephp/jade",
     "description": "Jade is a flexible PHP micro framework",
+    "keywords": ["php-framework", "micro-framework", "jade", "psr-7", "psr-15"],
+    "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Slince",

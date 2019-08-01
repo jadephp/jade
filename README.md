@@ -11,7 +11,7 @@ Jade is a flexible PHP micro framework to develop web applications and APIs
  
 ## Installation
 
-The recommended way to install Silex is through Composer:
+The recommended way to install Jade is through Composer:
 
 ```bash
 $ composer require jadephp/jade

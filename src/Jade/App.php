@@ -111,7 +111,7 @@ class App implements RequestHandlerInterface
     /**
      * 注册服务提供者
      *
-     * @param ServiceProviderInterface|EventProviderInterface|CommandProviderInterface $provider
+     * @param object $provider
      */
     public function register($provider)
     {

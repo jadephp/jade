@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Cube;
+namespace Cube\Core;
 
-use Jade\App as JadeApp;
+use Cube\Cube;
 
-class App extends JadeApp
+interface AppProviderInterface
 {
-
+    public function provide(Cube $app);
 }

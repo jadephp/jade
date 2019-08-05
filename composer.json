@@ -28,6 +28,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Cube\\": "./src/Cube",
             "Jade\\": "./src/Jade"
         }
     },

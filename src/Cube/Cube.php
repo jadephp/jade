@@ -38,4 +38,20 @@ class Cube extends JadeApp
             $provider->provide($this);
         }
     }
+
+    public function boot()
+    {
+        if ($this->booted) {
+            return;
+        }
+        parent::boot();
+        $this->initializeApps();
+    }
+
+    protected function initializeApps()
+    {
+        foreach ($this->apps as $app) {
+            $app->initialize($this);
+        }
+    }
 }

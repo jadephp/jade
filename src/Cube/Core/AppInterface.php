@@ -11,6 +11,7 @@
 
 namespace Cube\Core;
 
+use Cube\Cube;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -30,6 +31,11 @@ interface AppInterface
      * @param callable $routesFactory
      */
     public function setRoutesFactory(callable $routesFactory);
+
+    /**
+     * @param Cube $cube
+     */
+    public function initialize(Cube $cube);
 
     /**
      * app 启动

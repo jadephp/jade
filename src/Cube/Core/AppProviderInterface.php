@@ -11,9 +11,10 @@
 
 namespace Cube\Core;
 
-use Cube\Cube;
-
 interface AppProviderInterface
 {
-    public function provide(Cube $app);
+    /**
+     * @return AppInterface[]|\Generator
+     */
+    public function getApps();
 }

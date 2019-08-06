@@ -30,12 +30,14 @@ class Cube extends JadeApp
     /**
      * {@inheritdoc}
      */
-    public function register($provider)
+    public function register($provider, array $values = [])
     {
-        parent::register($provider);
+        parent::register($provider, $values);
 
         if ($provider instanceof AppProviderInterface) {
-            $provider->provide($this);
+            foreach ($provider->getApps() as $app) {
+                $this->apps[] = $app;
+            }
         }
     }
 

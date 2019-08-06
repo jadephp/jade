@@ -26,13 +26,13 @@ class AppDiscoveryProvider implements AppProviderInterface
         $this->dirs = (array)$dirs;
     }
 
-    public function provide(Cube $cube)
+    public function getApps()
     {
         $finder = new Finder();
         foreach ($finder->in($this->dirs)->name('app.php')->files() as $file) {
             $instance = include $file->getPathname();
             $instance->setPath($file->getRealPath());
-            $cube->registerApp($instance);
+            yield $instance;
         }
     }
 }

@@ -33,6 +33,11 @@ interface AppInterface
     public function setRoutesFactory(callable $routesFactory);
 
     /**
+     * @return callable|null
+     */
+    public function getRoutesFactory();
+
+    /**
      * @param Cube $cube
      */
     public function initialize(Cube $cube);

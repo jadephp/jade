@@ -50,10 +50,7 @@ class Cube extends JadeApp implements AppProviderInterface
             'cache_dir' => $this->getCacheDir() . '/twig'
         ]);
         $this->register(new DoctrineOrmServiceProvider(), [
-            'db.options' => array(
-                'driver'   => 'pdo_sqlite',
-                'path'     => __DIR__.'/app.db',
-            ),
+
         ]);
         $this->initializeApps();
     }
@@ -78,6 +75,9 @@ class Cube extends JadeApp implements AppProviderInterface
     protected function initializeApps()
     {
         foreach ($this->apps as $app) {
+            if (null !== ($routesFactory = $app->)) {
+
+            }
             $app->initialize($this);
         }
     }

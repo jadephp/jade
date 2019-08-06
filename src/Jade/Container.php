@@ -51,4 +51,16 @@ class Container extends PimpleContainer implements ContainerInterface
     {
         return $this->offsetExists($id);
     }
+
+    /**
+     * 批量添加服务或者参数
+     *
+     * @param array $values
+     */
+    public function add($values)
+    {
+        foreach ($values as $key => $value) {
+            $this[$key] = $value;
+        }
+    }
 }

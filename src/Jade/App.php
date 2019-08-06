@@ -112,8 +112,9 @@ class App implements RequestHandlerInterface
      * 注册服务提供者
      *
      * @param object $provider
+     * @param array $values
      */
-    public function register($provider)
+    public function register($provider, array $values = [])
     {
         // 注册服务
         if ($provider instanceof ServiceProviderInterface) {
@@ -123,6 +124,7 @@ class App implements RequestHandlerInterface
         if ($provider instanceof EventProviderInterface) {
             $provider->subscribe($this->container->get('event_dispatcher'), $this->container);
         }
+        $this->container->add($values);
         $this->providers[] = $provider;
     }
 

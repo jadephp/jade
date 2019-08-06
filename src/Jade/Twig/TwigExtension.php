@@ -11,25 +11,31 @@
 
 namespace Jade\Twig;
 
+use Jade\Routing\Router;
+use Psr\Http\Message\UriInterface;
+
 class TwigExtension extends \Twig\Extension\AbstractExtension
 {
     /**
-     * @var \Slim\Interfaces\RouterInterface
+     * @var Router
      */
     private $router;
     /**
-     * @var string|\Slim\Http\Uri
+     * @var string|UriInterface
      */
     private $uri;
+
     public function __construct($router, $uri)
     {
         $this->router = $router;
         $this->uri = $uri;
     }
+
     public function getName()
     {
         return 'slim';
     }
+
     public function getFunctions()
     {
         return [
@@ -40,10 +46,12 @@ class TwigExtension extends \Twig\Extension\AbstractExtension
             new \Twig\TwigFunction('current_path', array($this, 'currentPath')),
         ];
     }
+
     public function pathFor($name, $data = [], $queryParams = [], $appName = 'default')
     {
         return $this->router->pathFor($name, $data, $queryParams);
     }
+
     /**
      * Similar to pathFor but returns a fully qualified URL
      *
@@ -66,8 +74,9 @@ class TwigExtension extends \Twig\Extension\AbstractExtension
         $authority = $uri->getAuthority();
         $host = ($scheme ? $scheme . ':' : '')
             . ($authority ? '//' . $authority : '');
-        return $host.$path;
+        return $host . $path;
     }
+
     public function baseUrl()
     {
         if (is_string($this->uri)) {
@@ -77,10 +86,12 @@ class TwigExtension extends \Twig\Extension\AbstractExtension
             return $this->uri->getBaseUrl();
         }
     }
+
     public function isCurrentPath($name, $data = [])
     {
         return $this->router->pathFor($name, $data) === $this->uri->getBasePath() . '/' . ltrim($this->uri->getPath(), '/');
     }
+
     /**
      * Returns current path on given URI.
      *
@@ -98,6 +109,7 @@ class TwigExtension extends \Twig\Extension\AbstractExtension
         }
         return $path;
     }
+
     /**
      * Set the base url
      *

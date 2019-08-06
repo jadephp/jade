@@ -18,9 +18,11 @@ class TwigServiceProvider implements ServiceProviderInterface
 {
     public function register(ContainerInterface $container)
     {
+        $container['twig_class'] = Twig::class;
+        
         $container['twig'] = function($c){
             $twig = new $c['twig_class'];
-            $twig->addExtension();
+            return $twig;
         };
     }
 }

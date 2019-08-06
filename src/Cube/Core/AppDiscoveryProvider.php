@@ -11,7 +11,6 @@
 
 namespace Cube\Core;
 
-use Cube\Cube;
 use Symfony\Component\Finder\Finder;
 
 class AppDiscoveryProvider implements AppProviderInterface

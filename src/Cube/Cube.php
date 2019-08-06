@@ -11,21 +11,19 @@
 
 namespace Cube;
 
+use Cube\Core\AppDiscoveryProvider;
 use Cube\Core\AppInterface;
 use Cube\Core\AppProviderInterface;
 use Jade\App as JadeApp;
+use Jade\Provider\DoctrineOrmServiceProvider;
+use Jade\Twig\TwigServiceProvider;
 
-class Cube extends JadeApp
+class Cube extends JadeApp implements AppProviderInterface
 {
     /**
      * @var AppInterface[]
      */
     protected $apps = [];
-
-    public function registerApp(AppInterface $app)
-    {
-        $this->apps[] = $app;
-    }
 
     /**
      * {@inheritdoc}
@@ -47,7 +45,34 @@ class Cube extends JadeApp
             return;
         }
         parent::boot();
+        $this->register(new AppDiscoveryProvider($this->getRootDir() . '/apps'));
+        $this->register(new TwigServiceProvider(), [
+            'cache_dir' => $this->getCacheDir() . '/twig'
+        ]);
+        $this->register(new DoctrineOrmServiceProvider(), [
+            'db.options' => array(
+                'driver'   => 'pdo_sqlite',
+                'path'     => __DIR__.'/app.db',
+            ),
+        ]);
         $this->initializeApps();
+    }
+
+    public function getApps()
+    {
+        return [
+            new Admin\Admin()
+        ];
+    }
+
+    public function getRootDir()
+    {
+        return __DIR__ . '/../../';
+    }
+
+    public function getCacheDir()
+    {
+        return $this->getRootDir() . '/var/cache';
     }
 
     protected function initializeApps()

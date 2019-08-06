@@ -36,7 +36,7 @@ class App implements AppInterface
      */
     protected $enabled;
 
-    public function __construct($id, $enabled = true)
+    public function __construct($id = null, $enabled = true)
     {
         $this->id = $id;
         $this->enabled = $enabled;
@@ -84,6 +84,21 @@ class App implements AppInterface
     public function setRoutesFactory(callable $routesFactory)
     {
         $this->routesFactory = $routesFactory;
+    }
+
+    /**
+     * @return callable
+     */
+    public function getRoutesFactory(): ?callable
+    {
+        if ($this->routesFactory) {
+            return $this->routesFactory;
+        }
+        $routeFile = $this->getPath() . '/routes.php';
+        if (file_exists($routeFile)) {
+            $this->routesFactory = include $routeFile;
+        }
+        return null;
     }
 
     public function initialize(Cube $cube)

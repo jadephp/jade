@@ -35,22 +35,37 @@ use Doctrine\ORM\Mapping\Driver\XmlDriver;
 use Doctrine\ORM\Mapping\Driver\YamlDriver;
 use Doctrine\ORM\Mapping\Driver\StaticPHPDriver;
 use Doctrine\ORM\Repository\DefaultRepositoryFactory;
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Jade\CommandProviderInterface;
+use Jade\Console\Application;
+use Jade\ServiceProviderInterface;
 use Pimple\Container;
-use Pimple\ServiceProviderInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Doctrine ORM Pimple Service Provider.
  *
  * @author Beau Simensen <beau@dflydev.com>
  */
-class DoctrineOrmServiceProvider implements ServiceProviderInterface
+class DoctrineOrmServiceProvider implements ServiceProviderInterface, CommandProviderInterface
 {
+    public function provide(Application $app, ContainerInterface $container)
+    {
+        ConsoleRunner::addCommands($app);
+        $helperSet = $app->getHelperSet();
+        $doctrineHelperSet = ConsoleRunner::createHelperSet($container['orm.em']);
+        foreach ($doctrineHelperSet as $alias =>$helper) {
+            $helperSet->set($helper, $alias);
+        }
+        $app->setHelperSet($helperSet);
+    }
+
     /**
      * Register ORM service.
      *
-     * @param Container $container
+     * @param ContainerInterface $container
      */
-    public function register(Container $container)
+    public function register(ContainerInterface $container)
     {
         foreach ($this->getOrmDefaults() as $key => $value) {
             if (!isset($container[$key])) {

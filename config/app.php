@@ -1,10 +1,8 @@
 <?php
 return [
     'db.options' => array(
-        'driver' => 'pdo_sqlite',
-        'path' => '/path/to/sqlite.db',
+        'driver' => 'pdo_mysql',
     ),
-    'orm.proxies_dir' => '/path/to/proxies',
     'orm.em.options' => array(
         'mappings' => array(
             // Using actual filesystem paths

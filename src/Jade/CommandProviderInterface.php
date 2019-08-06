@@ -12,6 +12,7 @@
 namespace Jade;
 
 use Jade\Console\Application;
+use Psr\Container\ContainerInterface;
 
 interface CommandProviderInterface
 {
@@ -19,6 +20,7 @@ interface CommandProviderInterface
      * 注册命令
      *
      * @param Application $app
+     * @param ContainerInterface $container
      */
-    public function provide(Application $app);
+    public function provide(Application $app, ContainerInterface $container);
 }

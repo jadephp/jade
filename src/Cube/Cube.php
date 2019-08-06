@@ -11,9 +11,9 @@
 
 namespace Cube;
 
-use Cube\Core\AppDiscoveryProvider;
-use Cube\Core\AppInterface;
-use Cube\Core\AppProviderInterface;
+use Cube\Base\AppDiscoveryProvider;
+use Cube\Base\AppInterface;
+use Cube\Base\AppProviderInterface;
 use Jade\App as JadeApp;
 use Jade\Provider\DoctrineOrmServiceProvider;
 use Jade\Twig\TwigServiceProvider;
@@ -24,6 +24,8 @@ class Cube extends JadeApp implements AppProviderInterface
      * @var AppInterface[]
      */
     protected $apps = [];
+
+    protected $metadataMappings = [];
 
     /**
      * {@inheritdoc}
@@ -45,12 +47,13 @@ class Cube extends JadeApp implements AppProviderInterface
             return;
         }
         parent::boot();
+        $this->register($this);
         $this->register(new AppDiscoveryProvider($this->getRootDir() . '/apps'));
         $this->register(new TwigServiceProvider(), [
             'cache_dir' => $this->getCacheDir() . '/twig'
         ]);
         $this->register(new DoctrineOrmServiceProvider(), [
-
+            'orm.proxies_dir' => $this->getCacheDir() . '/doctrine_proxies'
         ]);
         $this->initializeApps();
     }
@@ -75,10 +78,16 @@ class Cube extends JadeApp implements AppProviderInterface
     protected function initializeApps()
     {
         foreach ($this->apps as $app) {
-            if (null !== ($routesFactory = $app->)) {
-
+            // 注册 app 的路由
+            if (null !== ($routesFactory = $app->getRoutesFactory())) {
+                $routesFactory($this);
             }
+            if (null !== ($mapping = $app->getEntityMapping())) {
+                $this->metadataMappings[] = $mapping;
+            }
+            // 注册
             $app->initialize($this);
         }
+        $this->container['orm.em.options'] = ['mappings' => $this->metadataMappings];
     }
 }

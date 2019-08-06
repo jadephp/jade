@@ -9,9 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Cube\Core;
+namespace Cube\Base;
 
 use Cube\Cube;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class App implements AppInterface
@@ -81,14 +82,6 @@ class App implements AppInterface
     /**
      * {@inheritdoc}
      */
-    public function setRoutesFactory(callable $routesFactory)
-    {
-        $this->routesFactory = $routesFactory;
-    }
-
-    /**
-     * @return callable
-     */
     public function getRoutesFactory(): ?callable
     {
         if ($this->routesFactory) {
@@ -101,8 +94,27 @@ class App implements AppInterface
         return null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getEntityMapping()
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function initialize(Cube $cube)
     {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function register(ContainerInterface $container)
+    {
+
     }
 
     /**

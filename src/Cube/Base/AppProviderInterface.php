@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Cube\Core;
+namespace Cube\Base;
 
 interface AppProviderInterface
 {

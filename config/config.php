@@ -1,8 +1,12 @@
 <?php
 
 use Zend\ConfigAggregator\ConfigAggregator;
+use Zend\ConfigAggregator\PhpFileProvider;
+
+$cacheFile = __DIR__ . '/../var/cache/cached-config.php';
 
 $aggregator = new ConfigAggregator([
-        
-], 'config-cache.php');
+    new PhpFileProvider(__DIR__ . '/app.php'),
+], $cacheFile);
+
 return $aggregator->getMergedConfig();

@@ -11,7 +11,7 @@
 
 namespace Cube\Admin;
 
-use Cube\Core\App;
+use Cube\Base\App;
 use Cube\Cube;
 
 class Admin extends App
@@ -26,8 +26,16 @@ class Admin extends App
         return __DIR__;
     }
 
+    public function getEntityMapping()
+    {
+        return [
+            'type' => 'simple_xml',
+            'namespace' => 'Cube\Admin\Entity',
+            'path' => __DIR__.'/Resources/doctrine',
+        ];
+    }
+
     public function initialize(Cube $cube)
     {
-        $cube->register(new AdminServiceProvider());
     }
 }

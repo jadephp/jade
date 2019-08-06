@@ -9,13 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Cube\Core;
+namespace Cube\Base;
 
 use Cube\Cube;
+use Jade\ServiceProviderInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-interface AppInterface
+interface AppInterface extends ServiceProviderInterface
 {
     /**
      * @return string
@@ -28,14 +29,14 @@ interface AppInterface
     public function isEnabled();
 
     /**
-     * @param callable $routesFactory
-     */
-    public function setRoutesFactory(callable $routesFactory);
-
-    /**
      * @return callable|null
      */
     public function getRoutesFactory();
+
+    /**
+     * @return array|null
+     */
+    public function getEntityMapping();
 
     /**
      * @param Cube $cube

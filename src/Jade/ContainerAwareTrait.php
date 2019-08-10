@@ -11,15 +11,15 @@
 
 namespace Jade;
 
-use Jade\Console\Application;
-
-interface CommandProviderInterface
+trait ContainerAwareTrait
 {
     /**
-     * 注册命令
-     *
-     * @param Application $app
-     * @param ContainerInterface $container
+     * @var ContainerInterface
      */
-    public function provide(Application $app, ContainerInterface $container);
+    protected $container;
+
+    public function setContainer(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
 }

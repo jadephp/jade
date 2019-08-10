@@ -12,6 +12,7 @@
 namespace Jade\Console;
 
 use Jade\CommandProviderInterface;
+use Psr\Container\ContainerInterface;
 use Zend\Stdlib\Glob;
 
 class CommandDiscovererProvider implements CommandProviderInterface
@@ -35,7 +36,7 @@ class CommandDiscovererProvider implements CommandProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function provide(Application $app)
+    public function provide(Application $app, ContainerInterface $container)
     {
         foreach (Glob::glob("{$this->dstDir}/*Command.php") as $file) {
             $commands = [];

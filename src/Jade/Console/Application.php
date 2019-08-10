@@ -68,7 +68,7 @@ EOT;
     {
         foreach ($this->decorated->getProviders() as $provider) {
             if ($provider instanceof CommandProviderInterface) {
-                $provider->provide($this);
+                $provider->provide($this, $this->decorated->getContainer());
             }
         }
     }

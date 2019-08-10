@@ -11,7 +11,7 @@
 
 namespace Jade\Routing;
 
-final class Collection implements \Countable, \IteratorAggregate
+final class RouteCollection implements \Countable, \IteratorAggregate
 {
     /**
      * 路由集合
@@ -60,9 +60,9 @@ final class Collection implements \Countable, \IteratorAggregate
     /**
      * 合并 route 集合
      *
-     * @param Collection $collection
+     * @param RouteCollection $collection
      */
-    public function merge(Collection $collection)
+    public function merge(RouteCollection $collection)
     {
         foreach ($collection as $route) {
             $this->add($route);

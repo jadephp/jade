@@ -9,17 +9,35 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Jade\Routing;
 
-trait RouteBuilderTrait
+class RouteCollector
 {
+    /**
+     * @var string
+     */
+    protected $prefix;
+
+    /**
+     * @var Route[]|RouteCollection
+     */
+    protected $routes = [];
+
+    public function __construct($prefix = '')
+    {
+        $this->prefix = $prefix;
+        $this->routes = new RouteCollection();
+    }
+
     /**
      * 获取路由集合
      *
-     * @return Collection
+     * @return RouteCollection
      */
-    abstract public function getRoutes();
+    public function getRoutes()
+    {
+        return $this->routes;
+    }
 
     /**
      * 创建一条 http get 路由
@@ -30,7 +48,7 @@ trait RouteBuilderTrait
      */
     public function get($path, $action)
     {
-        return $this->http($path, $action, 'GET');
+        return $this->map($path, $action, 'GET');
     }
 
     /**
@@ -42,7 +60,7 @@ trait RouteBuilderTrait
      */
     public function post($path, $action)
     {
-        return $this->http($path, $action, 'POST');
+        return $this->map($path, $action, 'POST');
     }
 
     /**
@@ -54,7 +72,7 @@ trait RouteBuilderTrait
      */
     public function delete($path, $action)
     {
-        return $this->http($path, $action, 'DELETE');
+        return $this->map($path, $action, 'DELETE');
     }
 
     /**
@@ -66,23 +84,7 @@ trait RouteBuilderTrait
      */
     public function put($path, $action)
     {
-        return $this->http($path, $action, ['PUT', 'PATCH']);
-    }
-
-    /**
-     * 创建一条 http 请求路由
-     *
-     * @param string $path
-     * @param string|callable $action
-     * @param array|string $methods
-     * @return Route
-     */
-    public function http($path, $action, $methods = [])
-    {
-        $methods = array_map('strtoupper', (array)$methods);
-        $route = new Route(null, $path, $action, $methods);
-        $this->getRoutes()->add($route);
-        return $route;
+        return $this->map($path, $action, ['PUT', 'PATCH']);
     }
 
     /**
@@ -94,6 +96,41 @@ trait RouteBuilderTrait
      */
     public function options($path, $action)
     {
-        return $this->http($path, $action, 'OPTIONS');
+        return $this->map($path, $action, 'OPTIONS');
+    }
+
+    /**
+     * 创建一条 http 请求路由
+     *
+     * @param string $path
+     * @param string|callable $action
+     * @param array|string $methods
+     * @return Route
+     */
+    public function map($path, $action, $methods = [])
+    {
+        $path = $this->prefix . $path;
+        $methods = array_map('strtoupper', (array)$methods);
+        $route = new Route(null, $path, $action, $methods);
+        $this->getRoutes()->add($route);
+        return $route;
+    }
+
+    public function any($path, $action)
+    {
+        return $this->map($path, $action);
+    }
+
+    /**
+     * 创建一条通用前缀的路由组
+     *
+     * @param string $prefix
+     * @param callable $callback
+     */
+    public function prefix($prefix, callable $callback)
+    {
+        $collector = new RouteCollector($prefix);
+        call_user_func($callback, $collector);
+        $this->routes->merge($collector->getRoutes());
     }
 }

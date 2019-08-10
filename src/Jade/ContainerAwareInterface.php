@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the jade/jade package.
+ * This file is part of the Cube package.
  *
  * (c) Slince <taosikai@yeah.net>
  *
@@ -11,15 +11,12 @@
 
 namespace Jade;
 
-use Jade\Console\Application;
-
-interface CommandProviderInterface
+interface ContainerAwareInterface
 {
     /**
-     * 注册命令
+     * Sets the container.
      *
-     * @param Application $app
      * @param ContainerInterface $container
      */
-    public function provide(Application $app, ContainerInterface $container);
+    public function setContainer(ContainerInterface $container);
 }

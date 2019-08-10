@@ -20,7 +20,7 @@ use Psr\Http\Message\ServerRequestInterface;
 class Router
 {
     /**
-     * @var Collection|Route[]
+     * @var RouteCollection|Route[]
      */
     protected $routes;
 
@@ -41,7 +41,7 @@ class Router
      */
     protected $cacheFile = false;
 
-    public function __construct(Collection $routes, RouteParser $parser = null)
+    public function __construct(RouteCollection $routes, RouteParser $parser = null)
     {
         $this->routes = $routes;
         $this->routeParser = $parser ?: new StdParser();
@@ -50,7 +50,7 @@ class Router
     /**
      * 设置路由集合
      *
-     * @param Collection $routes
+     * @param RouteCollection $routes
      */
     public function setRoutes($routes): void
     {
@@ -60,9 +60,9 @@ class Router
     /**
      * 返回路由集合
      *
-     * @return Collection
+     * @return RouteCollection
      */
-    public function getRoutes(): Collection
+    public function getRoutes(): RouteCollection
     {
         return $this->routes;
     }

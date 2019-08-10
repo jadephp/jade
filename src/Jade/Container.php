@@ -12,13 +12,11 @@
 namespace Jade;
 
 use Pimple\Container as PimpleContainer;
-use Psr\Container\ContainerInterface;
 use Jade\Exception\ContainerException;
 use Jade\Exception\ContainerValueNotFoundException;
 
 class Container extends PimpleContainer implements ContainerInterface
 {
-
     /**
      * 从容器中获取实例对象或者其它资源
      *
@@ -50,5 +48,25 @@ class Container extends PimpleContainer implements ContainerInterface
     public function has($id)
     {
         return $this->offsetExists($id);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function merge(array $values)
+    {
+        foreach ($values as $key => $value) {
+            $this[$key] = $value;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function add(array $values)
+    {
+        foreach ($values as $key => $value) {
+            $this->offsetExists($key) || $this[$key] = $value;
+        }
     }
 }

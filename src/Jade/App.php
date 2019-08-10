@@ -11,22 +11,20 @@
 
 namespace Jade;
 
+use Jade\Routing\RouteCollector;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Jade\HttpKernel\HttpKernelProvider;
-use Jade\Routing\Collection as RouteCollection;
+use Jade\Routing\RouteCollection as RouteCollection;
 use Jade\Routing\Route;
-use Jade\Routing\RouteBuilderTrait;
 use Jade\Middleware\RouteMiddleware;
 use Zend\Diactoros\ServerRequestFactory;
 
-class App implements RequestHandlerInterface
+class App extends RouteCollector implements RequestHandlerInterface
 {
-    use RouteBuilderTrait;
-
     /**
      * 是否已经初始化
      *
@@ -38,11 +36,6 @@ class App implements RequestHandlerInterface
      * @var ContainerInterface
      */
     protected $container;
-
-    /**
-     * @var RouteCollection
-     */
-    protected $routes;
 
     /**
      * @var array
@@ -58,7 +51,7 @@ class App implements RequestHandlerInterface
         $this->container = $container;
         $this->container['app'] = $this;
         $this->register(new CoreServiceProvider());
-        $this->routes = new RouteCollection();
+        parent::__construct(new RouteCollection());
     }
 
     /**
@@ -111,9 +104,10 @@ class App implements RequestHandlerInterface
     /**
      * 注册服务提供者
      *
-     * @param ServiceProviderInterface|EventProviderInterface|CommandProviderInterface $provider
+     * @param object $provider
+     * @param array $values
      */
-    public function register($provider)
+    public function register($provider, array $values = [])
     {
         // 注册服务
         if ($provider instanceof ServiceProviderInterface) {
@@ -123,17 +117,8 @@ class App implements RequestHandlerInterface
         if ($provider instanceof EventProviderInterface) {
             $provider->subscribe($this->container->get('event_dispatcher'), $this->container);
         }
+        $this->container->merge($values);
         $this->providers[] = $provider;
-    }
-
-    /**
-     * 返回该应用对应的路由集合
-     *
-     * @return RouteCollection
-     */
-    public function getRoutes()
-    {
-        return $this->routes;
     }
 
     /**

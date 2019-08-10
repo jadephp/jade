@@ -12,7 +12,6 @@
 namespace Jade;
 
 use Jade\Middleware\MiddlewareFactory;
-use Psr\Container\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Zend\Stratigility\MiddlewarePipe;
 
@@ -32,5 +31,7 @@ class CoreServiceProvider implements ServiceProviderInterface
         $container['middleware_factory'] = function(){
             return new MiddlewareFactory();
         };
+        // route collector
+        $container['route_collector'] = $container->get('app');
     }
 }

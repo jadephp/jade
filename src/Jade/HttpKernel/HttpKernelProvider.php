@@ -11,11 +11,10 @@
 
 namespace Jade\HttpKernel;
 
-use Jade\Container;
+use Jade\ContainerInterface;
 use Jade\EventProviderInterface;
 use Jade\Routing\Router;
 use Jade\ServiceProviderInterface;
-use Psr\Container\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 use Zend\HttpHandlerRunner\Emitter\SapiStreamEmitter;
@@ -24,19 +23,20 @@ class HttpKernelProvider implements ServiceProviderInterface, EventProviderInter
 {
     public function register(ContainerInterface $container)
     {
+        $container->add($this->getDefaults());
         // 路由控制
         $container['router'] = function($c){
-            return new Router($c['app']->getRoutes());
+            return new Router($c['route_collector']->getRoutes());
         };
         $container['router_listener'] = function($c){
             return new RouterListener($c['router']);
         };
         // http kernel
-        $container['controller_resolver'] = function(){
-            return new ControllerResolver();
+        $container['controller_resolver'] = function($c){
+            return new $c['http_kernel.controller_resolver_class']($c);
         };
-        $container['argument_resolver'] = function(){
-            return new ArgumentResolver();
+        $container['argument_resolver'] = function($c){
+            return new $c['http_kernel.argument_resolver_class'];
         };
         // http response emitter
         $container['http_emitter'] = function(){
@@ -56,7 +56,15 @@ class HttpKernelProvider implements ServiceProviderInterface, EventProviderInter
         };
     }
 
-    public function subscribe(EventDispatcherInterface $eventDispatcher, Container $container)
+    protected function getDefaults()
+    {
+        return [
+            'http_kernel.controller_resolver_class' => ControllerResolver::class,
+            'http_kernel.argument_resolver_class' => ArgumentResolver::class
+        ];
+    }
+
+    public function subscribe(EventDispatcherInterface $eventDispatcher, ContainerInterface $container)
     {
         $eventDispatcher->addSubscriber($container['router_listener']);
     }

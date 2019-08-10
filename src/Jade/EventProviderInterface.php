@@ -19,7 +19,7 @@ interface EventProviderInterface
      * 注册一组事件
      *
      * @param EventDispatcherInterface $eventDispatcher
-     * @param Container $container
+     * @param ContainerInterface $container
      */
-    public function subscribe(EventDispatcherInterface $eventDispatcher, Container $container);
+    public function subscribe(EventDispatcherInterface $eventDispatcher, ContainerInterface $container);
 }

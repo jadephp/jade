@@ -51,7 +51,7 @@ class App extends RouteCollector implements RequestHandlerInterface
         $this->container = $container;
         $this->container['app'] = $this;
         $this->register(new CoreServiceProvider());
-        parent::__construct(new RouteCollection());
+        parent::__construct();
     }
 
     /**

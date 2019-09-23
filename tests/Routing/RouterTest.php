@@ -4,7 +4,7 @@ namespace Jade\Tests\Routing;
 
 use FastRoute\Dispatcher;
 use PHPUnit\Framework\TestCase;
-use Jade\Routing\Collection;
+use Jade\Routing\RouteCollection;
 use Jade\Routing\Route;
 use Jade\Routing\Router;
 use Zend\Diactoros\ServerRequest;
@@ -13,14 +13,14 @@ class RouterTest extends TestCase
 {
     public function testRoutes()
     {
-        $routes = new Collection();
+        $routes = new RouteCollection();
         $router = new Router($routes);
         $this->assertSame($routes, $router->getRoutes());
     }
 
     public function testSearchRoute()
     {
-        $routes = new Collection();
+        $routes = new RouteCollection();
         $router = new Router($routes);
         $route = new Route('route1', '/foo', function(){}, ['GET']);
         $routes->add($route);
@@ -29,14 +29,14 @@ class RouterTest extends TestCase
 
     public function testDispatcher()
     {
-        $routes = new Collection();
+        $routes = new RouteCollection();
         $router = new Router($routes);
         $this->assertInstanceOf(Dispatcher::class, $router->getDispatcher());
     }
 
     protected function routerFactory()
     {
-        $routes = new Collection();
+        $routes = new RouteCollection();
         $route = new Route('route1', '/foo', function(){}, ['GET']);
         $route2 = new Route('route2', '/hello/{username}', function(){}, ['GET']);
         $route3 = new Route('route3', '/greet/{username}', function(){}, ['POST']);

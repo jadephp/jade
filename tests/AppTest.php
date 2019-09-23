@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Jade\App;
 use Jade\Middleware\MiddlewareFactory;
-use Jade\Routing\Collection;
+use Jade\Routing\RouteCollection;
 use Jade\Routing\Route;
 use Jade\ServiceProviderInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -18,7 +18,7 @@ class AppTest extends TestCase
     public function testRoutes()
     {
         $app = new App();
-        $this->assertInstanceOf(Collection::class, $app->getRoutes());
+        $this->assertInstanceOf(RouteCollection::class, $app->getRoutes());
     }
 
     public function testGetRoute()

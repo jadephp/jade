@@ -12,7 +12,6 @@
 namespace Jade\HttpKernel;
 
 use FastRoute\Dispatcher;
-use Jade\Exception\HttpException;
 use Jade\Exception\MethodNotAllowedHttpException;
 use Jade\Exception\NotFoundHttpException;
 use Jade\HttpKernel\Event\GetResponseEvent;

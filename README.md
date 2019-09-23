@@ -5,7 +5,7 @@
 [![Coverage Status](https://img.shields.io/codecov/c/github/jadephp/jade.svg?style=flat-square)](https://codecov.io/github/jadephp/jade)
 [![Latest Stable Version](https://img.shields.io/packagist/v/jadephp/jade.svg?style=flat-square&label=stable)](https://packagist.org/packages/jadephp/jade)
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/jadephp/jade.svg?style=flat-square)](https://scrutinizer-ci.com/g/jadephp/jade/?branch=master)
-[![Packagist](https://img.shields.io/packagist/l/jadephp/jade?style=flat-square)](https://travis-ci.org/jadephp/jade)
+[![Packagist](https://img.shields.io/packagist/l/jadephp/jade?style=flat-square)](https://packagist.org/packages/jadephp/jade)
 
 Jade is a flexible PHP micro framework to develop web applications and APIs
  

@@ -1,11 +1,25 @@
-# Jade Framework
-
-
-[![Build Status](https://img.shields.io/travis/jadephp/jade/master.svg?style=flat-square)](https://travis-ci.org/jadephp/jade)
-[![Coverage Status](https://img.shields.io/codecov/c/github/jadephp/jade.svg?style=flat-square)](https://codecov.io/github/jadephp/jade)
-[![Latest Stable Version](https://img.shields.io/packagist/v/jadephp/jade.svg?style=flat-square&label=stable)](https://packagist.org/packages/jadephp/jade)
-[![Scrutinizer](https://img.shields.io/scrutinizer/g/jadephp/jade.svg?style=flat-square)](https://scrutinizer-ci.com/g/jadephp/jade/?branch=master)
-[![Packagist](https://img.shields.io/packagist/l/jadephp/jade?style=flat-square)](https://packagist.org/packages/jadephp/jade)
+<p align="center">
+  <a href="https://cakephp.org/" target="_blank" >
+    <img alt="CakePHP" src="https://avatars2.githubusercontent.com/u/53564481?s=200" width="200" />
+  </a>
+</p>
+<p align="center">
+    <a href="LICENSE" target="_blank">
+        <img alt="Software License" src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square">
+    </a>
+    <a href="https://travis-ci.org/jadephp/jade" target="_blank">
+        <img alt="Build Status" src="https://img.shields.io/travis/jadephp/jade/master.svg?style=flat-square">
+    </a>
+    <a href="https://codecov.io/github/jadephp/jade" target="_blank">
+        <img alt="Coverage Status" src="https://img.shields.io/codecov/c/github/jadephp/jade.svg?style=flat-square">
+    </a>
+    <a href="https://scrutinizer-ci.com/g/jadephp/jade/?branch=master" target="_blank">
+        <img alt="Scrutinizer" src="https://img.shields.io/scrutinizer/g/jadephp/jade.svg?style=flat-square">
+    </a>
+    <a href="https://packagist.org/packages/jadephp/jade" target="_blank">
+        <img alt="Latest Stable Version" src="https://img.shields.io/packagist/v/jadephp/jade.svg?style=flat-square&label=stable">
+    </a>
+</p>
 
 Jade is a flexible PHP micro framework to develop web applications and APIs
  

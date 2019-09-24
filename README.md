@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://cakephp.org/" target="_blank" >
-    <img alt="CakePHP" src="https://avatars2.githubusercontent.com/u/53564481?s=200" width="200" />
+    <img alt="CakePHP" src="https://avatars2.githubusercontent.com/u/53564481?s=200" width="150" />
   </a>
 </p>
 <p align="center">
